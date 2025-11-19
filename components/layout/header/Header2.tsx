@@ -300,7 +300,7 @@ export default function Header2({
                     </Link>
                   </li>
                   <li>
-                    <a href="/tel:+919911522986">+91 9911522986</a>
+                    <a href="tel:+919911522986">+91 9911522986</a>
                   </li>
                 </ul>
               </div>
