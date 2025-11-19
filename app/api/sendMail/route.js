@@ -141,7 +141,7 @@ export async function POST(req) {
     });
     const htmlTemplate = `
     <div style="font-family:Arial,Helvetica,sans-serif;max-width:650px;margin:auto;padding:25px;border:1px solid #eee;border-radius:12px;background:#fff;">
-      <img src="https://www.bravemoor.com/assets/img/logo/bravemoor-logo.png" width="90" alt="Brave Moor" style="display:block;margin:0 auto 15px auto;">
+      <img src="https://bravemoor.com/logo.png" width="90" alt="Brave Moor" style="display:block;margin:0 auto 15px auto;">
       <h2 style="color:#ff5c35;text-align:center;margin-bottom:25px;">🚀 New Contact Form Submission</h2>
       
       <table style="width:100%;border-collapse:collapse;">
