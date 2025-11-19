@@ -250,6 +250,8 @@
 //   }
 // }
 
+// working sendmail code
+
 
 // import { NextResponse } from "next/server";
 
@@ -304,6 +306,69 @@
 
 
 
+// import { NextResponse } from "next/server";
+
+// type LeadBody = {
+//   name?: string;
+//   email?: string;
+//   phone?: string;
+//   message?: string;
+//   source?: string;
+// };
+
+// export async function POST(req: Request) {
+//   try {
+//     const body = (await req.json()) as LeadBody;
+//     const { name, email, phone, message, source } = body;
+
+//     if (!name || !email) {
+//       return NextResponse.json(
+//         { success: false, error: "Name and email required" },
+//         { status: 400 }
+//       );
+//     }
+
+//     // FIXED BASE URL
+//     const baseUrl =
+//       process.env.NEXT_PUBLIC_BASE_URL ||
+//       (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+
+//     const sendRes = await fetch(`${baseUrl}/api/sendMail`, {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({
+//         name,
+//         email,
+//         phone: phone || "",
+//         organisation: "Lead via Tony Chat",
+//         category: "Lead",
+//         message: `Source: ${source || "chat"}\n\n${message || ""}`,
+//       }),
+//     });
+
+//     const sendJson = await sendRes.json().catch(() => null);
+
+//     if (sendJson?.success) {
+//       return NextResponse.json({
+//         success: true,
+//         info: "Lead submitted successfully — our team will reach out within 24 hours.",
+//       });
+//     }
+
+//     return NextResponse.json(
+//       {
+//         success: false,
+//         error: "Failed to forward lead to email",
+//         raw: sendJson,
+//       },
+//       { status: 502 }
+//     );
+//   } catch (err: any) {
+//     return NextResponse.json({ success: false, error: err.message }, { status: 500 });
+//   }
+// }
+
+
 import { NextResponse } from "next/server";
 
 type LeadBody = {
@@ -326,11 +391,12 @@ export async function POST(req: Request) {
       );
     }
 
-    // FIXED BASE URL
+    // Determine base URL correctly for Vercel + Custom Domain
     const baseUrl =
       process.env.NEXT_PUBLIC_BASE_URL ||
       (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
 
+    // Send mail request
     const sendRes = await fetch(`${baseUrl}/api/sendMail`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -362,7 +428,9 @@ export async function POST(req: Request) {
       { status: 502 }
     );
   } catch (err: any) {
-    return NextResponse.json({ success: false, error: err.message }, { status: 500 });
+    return NextResponse.json(
+      { success: false, error: err.message },
+      { status: 500 }
+    );
   }
 }
-

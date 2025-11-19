@@ -139,7 +139,6 @@ export async function POST(req) {
         pass: process.env.EMAIL_PASS,
       },
     });
-
     const htmlTemplate = `
     <div style="font-family:Arial,Helvetica,sans-serif;max-width:650px;margin:auto;padding:25px;border:1px solid #eee;border-radius:12px;background:#fff;">
       <img src="https://www.bravemoor.com/assets/img/logo/bravemoor-logo.png" width="90" alt="Brave Moor" style="display:block;margin:0 auto 15px auto;">
