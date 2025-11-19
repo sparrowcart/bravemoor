@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+>
+  <!-- 🏠 Homepage -->
+  <url>
+    <loc>https://www.bravemoor.com/</loc>
+    <lastmod>2025-11-12T00:00:00+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- 📄 About -->
+  <url>
+    <loc>https://www.bravemoor.com/about</loc>
+    <lastmod>2025-11-12T00:00:00+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 🧰 Services overview -->
+  <url>
+    <loc>https://www.bravemoor.com/services</loc>
+    <lastmod>2025-11-12T00:00:00+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 📈 Marketing Essentials -->
+  <url><loc>https://www.bravemoor.com/services/website-development</loc><lastmod>2025-11-12T00:00:00+05:30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.bravemoor.com/services/seo-services</loc><lastmod>2025-11-12T00:00:00+05:30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.bravemoor.com/services/social-media-marketing</loc><lastmod>2025-11-12T00:00:00+05:30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.bravemoor.com/services/email-marketing</loc><lastmod>2025-11-12T00:00:00+05:30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.bravemoor.com/services/google-ads</loc><lastmod>2025-11-12T00:00:00+05:30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- 🚀 Advanced Growth -->
+  <url><loc>https://www.bravemoor.com/services/profit-first-marketing</loc><lastmod>2025-11-12T00:00:00+05:30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.bravemoor.com/services/conversion-optimization</loc><lastmod>2025-11-12T00:00:00+05:30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.bravemoor.com/services/marketing-strategy</loc><lastmod>2025-11-12T00:00:00+05:30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.bravemoor.com/services/founder-brand-accelerator</loc><lastmod>2025-11-12T00:00:00+05:30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.bravemoor.com/services/ecommerce-solutions</loc><lastmod>2025-11-12T00:00:00+05:30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- 🤖 AI & Future Tech -->
+  <url><loc>https://www.bravemoor.com/services/ai-marketing-automation</loc><lastmod>2025-11-12T00:00:00+05:30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.bravemoor.com/services/ai-video-generation</loc><lastmod>2025-11-12T00:00:00+05:30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.bravemoor.com/services/voice-ai</loc><lastmod>2025-11-12T00:00:00+05:30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.bravemoor.com/services/metaverse</loc><lastmod>2025-11-12T00:00:00+05:30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.bravemoor.com/services/blockchain-web3</loc><lastmod>2025-11-12T00:00:00+05:30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- 🧩 Case Studies -->
+  <url>
+    <loc>https://www.bravemoor.com/case-studies</loc>
+    <lastmod>2025-11-12T00:00:00+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 📰 Blogs -->
+  <url>
+    <loc>https://www.bravemoor.com/blogs</loc>
+    <lastmod>2025-11-12T00:00:00+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 💼 Plans -->
+  <url>
+    <loc>https://www.bravemoor.com/pricing</loc>
+    <lastmod>2025-11-12T00:00:00+05:30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- 📞 Contact -->
+  <url>
+    <loc>https://www.bravemoor.com/contact</loc>
+    <lastmod>2025-11-12T00:00:00+05:30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>

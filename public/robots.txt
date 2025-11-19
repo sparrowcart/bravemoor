@@ -1,0 +1,12 @@
+# brave moor robots.txt
+User-agent: *
+Allow: /
+
+# Block system folders
+Disallow: /api/
+Disallow: /_next/
+Disallow: /static/
+Disallow: /server-sitemap.xml
+
+# Sitemap
+Sitemap: https://www.bravemoor.com/sitemap.xml

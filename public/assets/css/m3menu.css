@@ -1,0 +1,135 @@
+/* Menu.css - Brave Moor Custom Menu Styles */
+
+/* Main Navigation Styling */
+.brave-navigation {
+  position: relative;
+}
+
+.brave-navigation .navigation {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.brave-navigation .navigation > li {
+  display: inline-block;
+  position: relative;
+  margin: 0 15px;
+}
+
+.brave-navigation .navigation > li > a {
+  color: #000;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 10px 0;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.brave-navigation .navigation > li > a:hover {
+  color: #FF6B00;
+}
+
+/* Active State */
+.brave-navigation .navigation > li.active > a {
+  color: #FF6B00;
+}
+
+/* Dropdown Styling */
+.brave-navigation .sub-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  min-width: 250px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  padding: 10px 0;
+}
+
+.brave-navigation .menu-item-has-children:hover > .sub-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Second Level Dropdown */
+.brave-navigation .sub-menu .sub-menu {
+  top: 0;
+  left: 100%;
+  transform: translateX(10px);
+}
+
+.brave-navigation .sub-menu .menu-item-has-children:hover > .sub-menu {
+  transform: translateX(0);
+}
+
+/* Dropdown Items */
+.brave-navigation .sub-menu li {
+  display: block;
+  margin: 0;
+  position: relative;
+}
+
+.brave-navigation .sub-menu li a {
+  display: block;
+  padding: 8px 20px;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+  font-family: inherit;
+}
+
+.brave-navigation .sub-menu li a:hover {
+  background: #FFF5F0;
+  color: #FF6B00;
+  border-left-color: #FF6B00;
+}
+
+.brave-navigation .sub-menu li.active a {
+  background: #FFF5F0;
+  color: #FF6B00;
+  border-left-color: #FF6B00;
+}
+
+/* Category Headers in Dropdown */
+.brave-navigation .sub-menu .menu-item-has-children > a {
+  font-weight: 700;
+  color: #000;
+  background: #F8F9FA;
+  border-bottom: 1px solid #eee;
+}
+
+.brave-navigation .sub-menu .menu-item-has-children > a:hover {
+  background: #FFF5F0;
+  color: #FF6B00;
+}
+
+/* Mobile Responsive */
+@media (max-width: 991px) {
+  .brave-navigation .navigation > li {
+    display: block;
+    margin: 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .brave-navigation .sub-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    background: #F8F9FA;
+    padding-left: 20px;
+  }
+  
+  .brave-navigation .sub-menu .sub-menu {
+    padding-left: 20px;
+  }
+}
