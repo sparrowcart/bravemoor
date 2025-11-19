@@ -391,12 +391,10 @@ export async function POST(req: Request) {
       );
     }
 
-    // Determine base URL correctly for Vercel + Custom Domain
-    const baseUrl =
-      process.env.NEXT_PUBLIC_BASE_URL ||
-      (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+    // Always use custom domain
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://bravemoor.com";
 
-    // Send mail request
+    // Forward lead to email API
     const sendRes = await fetch(`${baseUrl}/api/sendMail`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -434,3 +432,4 @@ export async function POST(req: Request) {
     );
   }
 }
+
