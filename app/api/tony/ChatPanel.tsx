@@ -1068,7 +1068,7 @@ export default function ChatPanel() {
     <div
       style={{
         position: "fixed",
-        right: 20,
+        right: 12,
         bottom: open ? 100 : 20,
         width: "min(420px, 95vw)",
         height: open ? "520px" : "0px",
