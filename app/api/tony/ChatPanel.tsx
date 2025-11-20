@@ -959,76 +959,250 @@ export default function ChatPanel() {
   };
 
   return (
-    <>
-      {/* Toggle */}
-      <div style={{ position: "fixed", right: 18, bottom: 18, zIndex: 9999 }}>
+    // <>
+    //   {/* Toggle */}
+    //   <div style={{ position: "fixed", right: 18, bottom: 18, zIndex: 9999 }}>
+    //     <button
+    //       onClick={() => setOpen((v) => !v)}
+    //       title="Open Tony — Brave Moor support"
+    //       style={{
+    //         width: 64,
+    //         height: 64,
+    //         borderRadius: 12,
+    //         background: "#ff5c35",
+    //         color: "#fff",
+    //         border: "none",
+    //         boxShadow: "0 12px 36px rgba(0,0,0,0.2)",
+    //         cursor: "pointer",
+    //         fontWeight: 800,
+    //         fontSize: 20
+    //       }}
+    //     >
+    //       T
+    //     </button>
+    //   </div>
+
+    //   {/* Panel */}
+    //   <div style={{
+    //     position: "fixed",
+    //     top: 0,
+    //     right: open ? 0 : -460,
+    //     zIndex: 9998,
+    //     width: 420,
+    //     height: "100vh",
+    //     transition: "right 240ms cubic-bezier(.2,.9,.25,1)",
+    //     boxShadow: open ? "-32px 0 80px rgba(14,14,14,0.12)" : "none",
+    //     display: "flex",
+    //     flexDirection: "column",
+    //     background: "#f7f7f8"
+    //   }}>
+    //     <div style={{ padding: 16, background: "linear-gradient(90deg,#ff5c35,#ff8a5a)", color: "#fff", display: "flex", alignItems: "center", gap: 12 }}>
+    //       <div style={{ width: 52, height: 52, borderRadius: 10, background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", color: "#ff5c35", fontWeight: 800, fontSize: 18 }}>T</div>
+    //       <div style={{ flex: 1 }}>
+    //         <div style={{ fontWeight: 800 }}>Tony • Brave Moor</div>
+    //         <div style={{ fontSize: 12, opacity: 0.95 }}>Support & project enquiries</div>
+    //       </div>
+    //       <div>
+    //         <button onClick={() => { setOpen(false); }} style={{ border: "none", background: "rgba(255,255,255,0.08)", color: "#fff", padding: "6px 10px", borderRadius: 8, cursor: "pointer" }}>Close</button>
+    //       </div>
+    //     </div>
+
+    //     <div ref={containerRef} style={{ flex: 1, overflowY: "auto", padding: 18 }}>
+    //       {messages.map((m) => renderMessage(m))}
+    //       {typing && (
+    //         <div style={{ display: "flex", gap: 12, alignItems: "center", marginTop: 8 }}>
+    //           <div style={{ width: 44, height: 44, borderRadius: 10, background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", color: "#ff5c35", fontWeight: 800 }}>T</div>
+    //           <div style={{ background: "#fff", padding: "8px 12px", borderRadius: 10 }}><small>Typing…</small></div>
+    //         </div>
+    //       )}
+    //     </div>
+
+    //     <form onSubmit={handleSend} style={{ padding: 12, borderTop: "1px solid rgba(0,0,0,0.04)", background: "#fff", display: "flex", gap: 8 }}>
+    //       <input
+    //         value={input}
+    //         onChange={(e) => setInput(e.target.value)}
+    //         placeholder="Type your message..."
+    //         style={{ flex: 1, padding: "12px 14px", borderRadius: 10, border: "1px solid #e6e6e8", outline: "none", fontSize: 14 }}
+    //       />
+    //       <button type="submit" disabled={loading} style={{ padding: "10px 14px", borderRadius: 10, background: "#ff5c35", color: "#fff", border: "none", cursor: "pointer" }}>
+    //         {loading ? "..." : "Send"}
+    //       </button>
+    //     </form>
+    //   </div>
+    // </>
+
+    
+      <>
+    {/* Toggle Button — Bottom Right */}
+    <div style={{
+      position: "fixed",
+      right: 20,
+      bottom: 20,
+      zIndex: 9999
+    }}>
+      <button
+        onClick={() => setOpen((v) => !v)}
+        title="Chat with Tony"
+        style={{
+          width: 64,
+          height: 64,
+          borderRadius: "50%",
+          background: "#ff5c35",
+          color: "#fff",
+          border: "none",
+          boxShadow: "0 12px 36px rgba(0,0,0,0.2)",
+          cursor: "pointer",
+          fontWeight: 800,
+          fontSize: 22,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          transition: "transform 0.2s ease"
+        }}
+      >
+        T
+      </button>
+    </div>
+
+    {/* Chat Window — Bottom Right */}
+    <div
+      style={{
+        position: "fixed",
+        right: 20,
+        bottom: open ? 100 : 20,
+        width: "min(420px, 95vw)",
+        height: open ? "520px" : "0px",
+        maxHeight: "80vh",
+        background: "#f7f7f8",
+        borderRadius: 14,
+        overflow: "hidden",
+        transition: "all 240ms cubic-bezier(.2,.9,.25,1)",
+        boxShadow: open ? "0 24px 80px rgba(14,14,14,0.25)" : "none",
+        opacity: open ? 1 : 0,
+        pointerEvents: open ? "auto" : "none",
+        display: "flex",
+        flexDirection: "column",
+        zIndex: 9998
+      }}
+    >
+      {/* Header */}
+      <div style={{
+        padding: 16,
+        background: "linear-gradient(90deg,#ff5c35,#ff8a5a)",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        gap: 12
+      }}>
+        <div style={{
+          width: 44,
+          height: 44,
+          borderRadius: 10,
+          background: "#fff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "#ff5c35",
+          fontWeight: 800
+        }}>T</div>
+
+        <div style={{ flex: 1 }}>
+          <div style={{ fontWeight: 800 }}>Tony • Brave Moor</div>
+          <div style={{ fontSize: 12, opacity: 0.95 }}>Support & project enquiries</div>
+        </div>
+
         <button
-          onClick={() => setOpen((v) => !v)}
-          title="Open Tony — Brave Moor support"
+          onClick={() => setOpen(false)}
           style={{
-            width: 64,
-            height: 64,
-            borderRadius: 12,
-            background: "#ff5c35",
-            color: "#fff",
             border: "none",
-            boxShadow: "0 12px 36px rgba(0,0,0,0.2)",
-            cursor: "pointer",
-            fontWeight: 800,
-            fontSize: 20
+            background: "rgba(255,255,255,0.12)",
+            color: "#fff",
+            padding: "6px 10px",
+            borderRadius: 8,
+            cursor: "pointer"
           }}
         >
-          T
+          Close
         </button>
       </div>
 
-      {/* Panel */}
-      <div style={{
-        position: "fixed",
-        top: 0,
-        right: open ? 0 : -460,
-        zIndex: 9998,
-        width: 420,
-        height: "100vh",
-        transition: "right 240ms cubic-bezier(.2,.9,.25,1)",
-        boxShadow: open ? "-32px 0 80px rgba(14,14,14,0.12)" : "none",
-        display: "flex",
-        flexDirection: "column",
-        background: "#f7f7f8"
-      }}>
-        <div style={{ padding: 16, background: "linear-gradient(90deg,#ff5c35,#ff8a5a)", color: "#fff", display: "flex", alignItems: "center", gap: 12 }}>
-          <div style={{ width: 52, height: 52, borderRadius: 10, background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", color: "#ff5c35", fontWeight: 800, fontSize: 18 }}>T</div>
-          <div style={{ flex: 1 }}>
-            <div style={{ fontWeight: 800 }}>Tony • Brave Moor</div>
-            <div style={{ fontSize: 12, opacity: 0.95 }}>Support & project enquiries</div>
-          </div>
-          <div>
-            <button onClick={() => { setOpen(false); }} style={{ border: "none", background: "rgba(255,255,255,0.08)", color: "#fff", padding: "6px 10px", borderRadius: 8, cursor: "pointer" }}>Close</button>
-          </div>
-        </div>
-
-        <div ref={containerRef} style={{ flex: 1, overflowY: "auto", padding: 18 }}>
-          {messages.map((m) => renderMessage(m))}
-          {typing && (
-            <div style={{ display: "flex", gap: 12, alignItems: "center", marginTop: 8 }}>
-              <div style={{ width: 44, height: 44, borderRadius: 10, background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", color: "#ff5c35", fontWeight: 800 }}>T</div>
-              <div style={{ background: "#fff", padding: "8px 12px", borderRadius: 10 }}><small>Typing…</small></div>
+      {/* Messages */}
+      <div
+        ref={containerRef}
+        style={{
+          flex: 1,
+          overflowY: "auto",
+          padding: 16
+        }}
+      >
+        {messages.map((m) => renderMessage(m))}
+        {typing && (
+          <div style={{ display: "flex", gap: 12, alignItems: "center", marginTop: 8 }}>
+            <div style={{
+              width: 40,
+              height: 40,
+              borderRadius: 10,
+              background: "#fff",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#ff5c35",
+              fontWeight: 800
+            }}>T</div>
+            <div style={{
+              background: "#fff",
+              padding: "8px 12px",
+              borderRadius: 10
+            }}>
+              <small>Typing…</small>
             </div>
-          )}
-        </div>
-
-        <form onSubmit={handleSend} style={{ padding: 12, borderTop: "1px solid rgba(0,0,0,0.04)", background: "#fff", display: "flex", gap: 8 }}>
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Type your message..."
-            style={{ flex: 1, padding: "12px 14px", borderRadius: 10, border: "1px solid #e6e6e8", outline: "none", fontSize: 14 }}
-          />
-          <button type="submit" disabled={loading} style={{ padding: "10px 14px", borderRadius: 10, background: "#ff5c35", color: "#fff", border: "none", cursor: "pointer" }}>
-            {loading ? "..." : "Send"}
-          </button>
-        </form>
+          </div>
+        )}
       </div>
-    </>
+
+      {/* Input */}
+      <form
+        onSubmit={handleSend}
+        style={{
+          padding: 12,
+          borderTop: "1px solid rgba(0,0,0,0.04)",
+          background: "#fff",
+          display: "flex",
+          gap: 8
+        }}
+      >
+        <input
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Type your message..."
+          style={{
+            flex: 1,
+            padding: "12px 14px",
+            borderRadius: 10,
+            border: "1px solid #e6e6e8",
+            outline: "none",
+            fontSize: 14
+          }}
+        />
+
+        <button
+          type="submit"
+          disabled={loading}
+          style={{
+            padding: "10px 14px",
+            borderRadius: 10,
+            background: "#ff5c35",
+            color: "#fff",
+            border: "none",
+            cursor: "pointer",
+            width: 80
+          }}
+        >
+          {loading ? "..." : "Send"}
+        </button>
+      </form>
+    </div>
+  </>
+  
   );
 }
