@@ -1094,7 +1094,7 @@ export default function ChatPanel() {
         alignItems: "center",
         gap: 12
       }}>
-        <div style={{
+        <div className="mfp-hide" style={{
           width: 44,
           height: 44,
           borderRadius: 10,
@@ -1105,7 +1105,13 @@ export default function ChatPanel() {
           color: "#ff5c35",
           fontWeight: 800
         }}>T</div>
-
+<div style={{ width: 52, height: 52, borderRadius: 100, overflow: "hidden", background: "#fff" }}>
+  <img 
+    src="/tony.png"
+    alt="Tony"
+    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+  />
+</div>
         <div style={{ flex: 1 }}>
           <div style={{ fontWeight: 800 }}>Tony • Brave Moor</div>
           <div style={{ fontSize: 12, opacity: 0.95 }}>Support & project enquiries</div>
