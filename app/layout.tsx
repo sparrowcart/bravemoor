@@ -151,14 +151,15 @@ export default function RootLayout({
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
         />
-        <Script id="google-analytics">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-XXXXXXXXXX');
-          `}
-        </Script>
+        <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SLE0VJHTYF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SLE0VJHTYF');
+</script>
       </head>
 
       <body
