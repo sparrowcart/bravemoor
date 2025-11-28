@@ -145,19 +145,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        {/* Google Analytics (optional — replace with your real GA ID) */}
-      
-        <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SLE0VJHTYF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <head>
+  <Script
+    src="https://www.googletagmanager.com/gtag/js?id=G-SLE0VJHTYF"
+    strategy="afterInteractive"
+  />
 
-  gtag('config', 'G-SLE0VJHTYF');
-</script>
-      </head>
+  <Script id="ga4" strategy="afterInteractive">
+    {`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-SLE0VJHTYF');
+    `}
+  </Script>
+</head>
 
       <body
         className={`${poppins.variable} ${aclonica.variable} ${unbounded.variable} theme-green`}
