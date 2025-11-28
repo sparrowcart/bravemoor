@@ -147,10 +147,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* Google Analytics (optional — replace with your real GA ID) */}
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
-        />
+      
         <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SLE0VJHTYF"></script>
 <script>
