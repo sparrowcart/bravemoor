@@ -789,7 +789,7 @@ export default function Contact() {
     phone: "",
     category: "",
     message: "",
-          website: "", 
+    website: "", 
   });
 
   const [loading, setLoading] = useState(false);
@@ -828,6 +828,7 @@ export default function Contact() {
           phone: "",
           category: "",
           message: "",
+                website: "",
         });
 
         setTimeout(() => setSuccessMessage(""), 5000);
