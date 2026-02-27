@@ -125,12 +125,125 @@
 //   }
 // }
 
+// date 27/2 yaha code comment out kar raha hu aur bot safety code eske bad ad kar raha hu
+
+// import nodemailer from "nodemailer";
+
+// export async function POST(req) {
+//   try {
+//     const { name, email, phone, organisation, category, message } = await req.json();
+
+//     const transporter = nodemailer.createTransport({
+//       service: "gmail",
+//       auth: {
+//         user: process.env.EMAIL_USER,
+//         pass: process.env.EMAIL_PASS,
+//       },
+//     });
+//     const htmlTemplate = `
+//     <div style="font-family:Arial,Helvetica,sans-serif;max-width:650px;margin:auto;padding:25px;border:1px solid #eee;border-radius:12px;background:#fff;">
+//       <img src="https://bravemoor.com/logo.png" width="90" alt="Brave Moor" style="display:block;margin:0 auto 15px auto;">
+//       <h2 style="color:#ff5c35;text-align:center;margin-bottom:25px;">🚀 New Contact Form Submission</h2>
+      
+//       <table style="width:100%;border-collapse:collapse;">
+//         <tr><td style="padding:10px;border-bottom:1px solid #eee;"><strong>Name:</strong></td><td style="padding:10px;border-bottom:1px solid #eee;">${name}</td></tr>
+//         <tr><td style="padding:10px;border-bottom:1px solid #eee;"><strong>Email:</strong></td><td style="padding:10px;border-bottom:1px solid #eee;"><a href="mailto:${email}" style="color:#ff5c35;">${email}</a></td></tr>
+//         <tr><td style="padding:10px;border-bottom:1px solid #eee;"><strong>Phone:</strong></td><td style="padding:10px;border-bottom:1px solid #eee;">${phone}</td></tr>
+//         <tr><td style="padding:10px;border-bottom:1px solid #eee;"><strong>Organisation:</strong></td><td style="padding:10px;border-bottom:1px solid #eee;">${organisation}</td></tr>
+//         <tr><td style="padding:10px;border-bottom:1px solid #eee;"><strong>Category:</strong></td><td style="padding:10px;border-bottom:1px solid #eee;">${category}</td></tr>
+//         <tr><td style="padding:10px;"><strong>Message:</strong></td><td style="padding:10px;">${message}</td></tr>
+//       </table>
+
+//       <p style="font-size:14px;color:#555;margin-top:30px;text-align:center;">
+//         — This message was sent from the <strong>Brave Moor</strong> contact form.
+//       </p>
+//     </div>
+//     `;
+
+//     await transporter.sendMail({
+//       from: `"${name}" <${email}>`,
+//       to: "bravemoor@gmail.com",
+//       subject: `New Contact Form Submission from ${name}`,
+//       html: htmlTemplate,
+//     });
+
+//     await transporter.sendMail({
+//       from: `"Brave Moor" <${process.env.EMAIL_USER}>`,
+//       to: email,
+//       subject: `We've received your message, ${name}!`,
+//       html: `
+//         <div style="font-family:Arial,Helvetica,sans-serif;max-width:650px;margin:auto;padding:25px;border:1px solid #eee;border-radius:12px;background:#fff;">
+//           <img src="https://www.bravemoor.com/logo.png" 
+//      width="90" 
+//      alt="Brave Moor" 
+//      style="display:block;margin:0 auto 15px auto;">
+//           <h2 style="color:#ff5c35;text-align:center;margin-bottom:20px;">Thank You for Reaching Out!</h2>
+//           <p style="font-size:16px;color:#333;line-height:1.6;">
+//             Hi <strong>${name}</strong>,<br><br>
+//             We’ve received your message and our team will get back to you shortly.<br>
+//             Meanwhile, feel free to explore our work at <a href="https://www.bravemoor.com" style="color:#ff5c35;text-decoration:none;">Brave Moor</a>.
+//           </p>
+//           <p style="font-size:14px;color:#666;margin-top:30px;text-align:center;">
+//             — Warm Regards,<br><strong>Team Brave Moor</strong>
+//           </p>
+//         </div>
+//       `,
+//     });
+
+//     return new Response(
+//       JSON.stringify({ success: true, message: "Email sent successfully ✅" }),
+//       { status: 200 }
+//     );
+
+//   } catch (error) {
+//     console.error("Error sending email:", error);
+//     return new Response(
+//       JSON.stringify({ success: false, error: "Failed to send email ❌" }),
+//       { status: 500 }
+//     );
+//   }
+// }
+
 
 import nodemailer from "nodemailer";
 
 export async function POST(req) {
   try {
-    const { name, email, phone, organisation, category, message } = await req.json();
+    const body = await req.json();
+
+    const {
+      name,
+      email,
+      phone,
+      organisation,
+      category,
+      message,
+      website, // 👈 Honeypot field
+    } = body;
+
+    // 🛑 1. Honeypot Protection
+    if (website) {
+      return new Response(
+        JSON.stringify({ success: false }),
+        { status: 400 }
+      );
+    }
+
+    // 🛑 2. Basic Validation
+    if (!name || !email || !category || !message) {
+      return new Response(
+        JSON.stringify({ success: false, error: "Missing required fields" }),
+        { status: 400 }
+      );
+    }
+
+    // 🛑 3. Message Length Check (bots usually short text send karte hain)
+    if (message.length < 15) {
+      return new Response(
+        JSON.stringify({ success: false, error: "Invalid message length" }),
+        { status: 400 }
+      );
+    }
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -139,65 +252,35 @@ export async function POST(req) {
         pass: process.env.EMAIL_PASS,
       },
     });
-    const htmlTemplate = `
-    <div style="font-family:Arial,Helvetica,sans-serif;max-width:650px;margin:auto;padding:25px;border:1px solid #eee;border-radius:12px;background:#fff;">
-      <img src="https://bravemoor.com/logo.png" width="90" alt="Brave Moor" style="display:block;margin:0 auto 15px auto;">
-      <h2 style="color:#ff5c35;text-align:center;margin-bottom:25px;">🚀 New Contact Form Submission</h2>
-      
-      <table style="width:100%;border-collapse:collapse;">
-        <tr><td style="padding:10px;border-bottom:1px solid #eee;"><strong>Name:</strong></td><td style="padding:10px;border-bottom:1px solid #eee;">${name}</td></tr>
-        <tr><td style="padding:10px;border-bottom:1px solid #eee;"><strong>Email:</strong></td><td style="padding:10px;border-bottom:1px solid #eee;"><a href="mailto:${email}" style="color:#ff5c35;">${email}</a></td></tr>
-        <tr><td style="padding:10px;border-bottom:1px solid #eee;"><strong>Phone:</strong></td><td style="padding:10px;border-bottom:1px solid #eee;">${phone}</td></tr>
-        <tr><td style="padding:10px;border-bottom:1px solid #eee;"><strong>Organisation:</strong></td><td style="padding:10px;border-bottom:1px solid #eee;">${organisation}</td></tr>
-        <tr><td style="padding:10px;border-bottom:1px solid #eee;"><strong>Category:</strong></td><td style="padding:10px;border-bottom:1px solid #eee;">${category}</td></tr>
-        <tr><td style="padding:10px;"><strong>Message:</strong></td><td style="padding:10px;">${message}</td></tr>
-      </table>
 
-      <p style="font-size:14px;color:#555;margin-top:30px;text-align:center;">
-        — This message was sent from the <strong>Brave Moor</strong> contact form.
-      </p>
-    </div>
+    const htmlTemplate = `
+      <div style="font-family:Arial,Helvetica,sans-serif;max-width:650px;margin:auto;padding:25px;border:1px solid #eee;border-radius:12px;background:#fff;">
+        <h2 style="color:#ff5c35;text-align:center;">🚀 New Contact Form Submission</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone || "N/A"}</p>
+        <p><strong>Organisation:</strong> ${organisation || "N/A"}</p>
+        <p><strong>Category:</strong> ${category}</p>
+        <p><strong>Message:</strong><br/>${message}</p>
+      </div>
     `;
 
     await transporter.sendMail({
-      from: `"${name}" <${email}>`,
+      from: `"Brave Moor" <${process.env.EMAIL_USER}>`,
       to: "bravemoor@gmail.com",
       subject: `New Contact Form Submission from ${name}`,
       html: htmlTemplate,
     });
 
-    await transporter.sendMail({
-      from: `"Brave Moor" <${process.env.EMAIL_USER}>`,
-      to: email,
-      subject: `We've received your message, ${name}!`,
-      html: `
-        <div style="font-family:Arial,Helvetica,sans-serif;max-width:650px;margin:auto;padding:25px;border:1px solid #eee;border-radius:12px;background:#fff;">
-          <img src="https://www.bravemoor.com/logo.png" 
-     width="90" 
-     alt="Brave Moor" 
-     style="display:block;margin:0 auto 15px auto;">
-          <h2 style="color:#ff5c35;text-align:center;margin-bottom:20px;">Thank You for Reaching Out!</h2>
-          <p style="font-size:16px;color:#333;line-height:1.6;">
-            Hi <strong>${name}</strong>,<br><br>
-            We’ve received your message and our team will get back to you shortly.<br>
-            Meanwhile, feel free to explore our work at <a href="https://www.bravemoor.com" style="color:#ff5c35;text-decoration:none;">Brave Moor</a>.
-          </p>
-          <p style="font-size:14px;color:#666;margin-top:30px;text-align:center;">
-            — Warm Regards,<br><strong>Team Brave Moor</strong>
-          </p>
-        </div>
-      `,
-    });
-
     return new Response(
-      JSON.stringify({ success: true, message: "Email sent successfully ✅" }),
+      JSON.stringify({ success: true }),
       { status: 200 }
     );
 
   } catch (error) {
     console.error("Error sending email:", error);
     return new Response(
-      JSON.stringify({ success: false, error: "Failed to send email ❌" }),
+      JSON.stringify({ success: false }),
       { status: 500 }
     );
   }
