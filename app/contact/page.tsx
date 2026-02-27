@@ -768,6 +768,7 @@
 //   );
 // }
 
+// date 27/2/ todya i ma adding bot free code like save from bot
 
 "use client";
 
@@ -788,6 +789,7 @@ export default function Contact() {
     phone: "",
     category: "",
     message: "",
+          website: "", 
   });
 
   const [loading, setLoading] = useState(false);
@@ -946,6 +948,14 @@ export default function Contact() {
                 )}
 
                 <form className="contact__form" onSubmit={handleSubmit}>
+
+                         <input
+    type="text"
+    name="website"
+    style={{ display: "none" }}
+    tabIndex={-1}
+    autoComplete="off"
+  />
 
   {/* SUCCESS */}
   {successMessage && (
